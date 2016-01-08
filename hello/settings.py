@@ -8,6 +8,7 @@
 #     http://doc.scrapy.org/en/latest/topics/settings.html
 #     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
+import os
 
 BOT_NAME = 'hello'
 
@@ -15,7 +16,11 @@ SPIDER_MODULES = ['hello.spiders']
 NEWSPIDER_MODULE = 'hello.spiders'
 
 ITEM_PIPELINES = {'scrapy.contrib.pipeline.images.ImagesPipeline': 1}
-IMAGES_STORE = '/Users/wanghe/scrapy/hello/images'
+USER_HOME = os.path.expanduser('~')
+
+IMAGES_STORE = os.path.join(USER_HOME, 'images')
+os.makedirs(IMAGES_STORE)
+
 IMAGES_THUMBS = {
     'small': (50, 50),
     'big': (270, 270),
